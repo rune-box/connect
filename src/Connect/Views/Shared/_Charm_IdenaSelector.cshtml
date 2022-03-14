@@ -1,0 +1,61 @@
+﻿@{
+    string Token_Idena_Desktop = Guid.NewGuid().ToString();
+    string Token_Idena_Web = Guid.NewGuid().ToString();
+    
+    string urlWeb, urlDesktop;
+    if (System.Diagnostics.Debugger.IsAttached) {
+        urlDesktop = "dna://signin/v1?token=" + Token_Idena_Desktop + "&"
+            + "callback_url=https%3A%2F%2Flocalhost:44385&"
+            + "nonce_endpoint=https%3A%2F%2Flocalhost:44385%2Fidena%2Fstart-session&"
+            + "authentication_endpoint=https%3A%2F%2Flocalhost:44385%2Fidena%2Fauthenticate&"
+            + "favicon_url=https%3A%2F%2Flocalhost:44385%2Ffavicon.ico";
+
+        urlWeb = "https://app.idena.io/dna/signin?token=" + Token_Idena_Web + "&"
+            + "callback_url=https://localhost:44385&"
+            + "nonce_endpoint=https://localhost:44385/idena/start-session&"
+            + "authentication_endpoint=https://localhost:44385/idena/authenticate&"
+            + "favicon_url=https://localhost:44385/favicon.ico";
+    }
+    else {
+        urlDesktop = "dna://signin/v1?token=" + Token_Idena_Desktop + "&"
+            + "callback_url=https%3A%2F%2Fconnect.runebox.net&"
+            + "nonce_endpoint=https%3A%2F%2Fconnect.runebox.net%2Fidena%2Fstart-session&"
+            + "authentication_endpoint=https%3A%2F%2Fconnect.runebox.net%2Fidena%2Fauthenticate&"
+            + "favicon_url=https%3A%2F%2Fconnect.runebox.net%2Ffavicon.ico";
+
+        urlWeb = "https://app.idena.io/dna/signin?token=" + Token_Idena_Web + "&"
+            + "callback_url=https://connect.runebox.net&"
+            + "nonce_endpoint=https://connect.runebox.net/idena/start-session&"
+            + "authentication_endpoint=https://connect.runebox.net/idena/authenticate&"
+            + "favicon_url=https://connect.runebox.net/favicon.ico";
+    }
+}
+
+<div id="charmIdenaSelector" data-role="charms" data-position="left" class="border bd-default p-1 bg-light fg-black w-75 h-100" style="max-width: 400px;">
+    <div class="grid">
+        <div class="row p-3 fg-gray">
+            <h3>### Idena</h3>
+        </div>
+        <div class="row p-3 flex-justify-center">
+            <a class="command-button info outline" href="@urlDesktop" style="width: 250px;">
+                <span class="mif-command icon"></span>
+                <span class="caption">
+                    Desktop App
+                    <small><span class="mif-laptop"></span> <span class="mif-display"></span></small>
+                </span>
+            </a>
+        </div>
+        <div class="row p-3 flex-justify-center">
+            <a class="command-button success outline" href="@urlWeb" style="width: 250px;">
+                <span class="mif-link icon"></span>
+                <span class="caption">
+                    Web App
+                    <small><span class="mif-firefox"></span> <span class="mif-chrome"></span> <span class="mif-ie"></span> <span class="mif-opera"></span> <span class="mif-safari"></span></small>
+                </span>
+            </a>
+        </div>
+        <div class="row p-3 mt-3 flex-justify-center">
+            <button class="button info cycle outline" onclick="Metro.charms.close('#charmIdenaSelector');"><span class="mif-cross"></span></button>
+        </div>
+    </div>
+</div>
